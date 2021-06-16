@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-
+import { Link } from "react-router-dom";
 const DropDownMenu = props => {
   let toggleRef = useRef();
-  console.log(props);
+
   useEffect(() => {
     if (props.toggle === true) {
       toggleRef.current.style.display = "block";
@@ -15,7 +15,7 @@ const DropDownMenu = props => {
       <div className="arrow-up"></div>
       <ul>
         <li>
-          <a href="/">LogIn</a>
+          <Link to="/login">LogIn</Link>
         </li>
         <li>
           <a href="/">help and legal</a>
