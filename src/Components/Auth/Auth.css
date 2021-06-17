@@ -1,0 +1,99 @@
+#authBlock {
+  width: 500px;
+  margin: 10px auto;
+  height: auto;
+}
+
+#authBlock article {
+  width: 500px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#authBlock article > div {
+  background: #2c2542;
+  padding: 30px;
+  color: #fff;
+  border-radius: 2px;
+}
+
+#authBlock article div h1 {
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+}
+
+#authBlock article div p {
+  text-align: center;
+  padding: 10px;
+}
+
+#authBlock article div form {
+  width: 100%;
+}
+
+#authBlock article div form .form-group {
+  position: relative;
+}
+
+#authBlock article div form input {
+  width: 100%;
+  border-radius: 1px;
+  background-color: transparent;
+  border-bottom: 1px solid #9184bc;
+  color: #ffffff;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+label {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 2px 0 0;
+  position: absolute;
+  top: 19px;
+  left: 0;
+}
+
+input:focus + label {
+  position: absolute;
+  top: 0;
+  transition: ease all 0.7s;
+  font-size: 10px;
+  opacity: 0.6;
+}
+input:focus {
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+#authBlock button {
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(263deg, #5909b3, #7f0dff);
+  color: #fff;
+  outline: none;
+  border: none;
+  margin: 10px 0;
+  padding: 10px 0;
+}
