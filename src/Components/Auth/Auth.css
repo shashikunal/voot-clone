@@ -60,7 +60,7 @@
 
 label {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   padding: 2px 0 0;
   position: absolute;
   top: 19px;
@@ -95,5 +95,24 @@ input:-webkit-autofill:focus {
   outline: none;
   border: none;
   margin: 10px 0;
+  padding: 15px 0;
+}
+.register_Block {
+  display: flex;
   padding: 10px 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.register_Block a {
+  color: #b085e1d1;
+  flex: 1 1;
+  text-decoration: none;
+  font-size: 13px;
+  text-shadow: 1px 2px 2px #111;
+}
+.register_Block a:last-child {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 20px;
 }

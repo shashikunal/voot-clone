@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Auth.css";
 const Login = () => {
   return (
@@ -16,7 +17,10 @@ const Login = () => {
               <input type="password" name="password" id="password" />
               <label htmlFor="password">Password</label>
             </div>
-
+            <div className="form-group register_Block">
+              <Link to="/register">Register</Link>
+              <Link to="/password-reset">Reset password</Link>
+            </div>
             <div className="form-group">
               <button>Login</button>
             </div>

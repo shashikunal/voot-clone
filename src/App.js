@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/register" exact>
             <Register />
           </Route>
-          <Route path="password-reset" exact>
+          <Route path="/password-reset" exact>
             <PasswordReset />
           </Route>
           <Route path="/otp" exact>
