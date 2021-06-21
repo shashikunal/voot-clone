@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import firebase from "../../firebase";
+import { toast } from "react-toastify";
+import faker from "faker/locale/en_IND";
+import md5 from "md5";
 import "./Auth.css";
 const Register = () => {
   let [setUser, setStateUser] = useState({
@@ -19,11 +23,45 @@ const Register = () => {
 
   let handleSubmit = async e => {
     e.preventDefault();
-
     try {
-      console.log(setUser);
+      if (password === confirm_password) {
+        setStateUser({ loading: true });
+        let userData = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+        let verificationMessage = `A verification message has been sent to ${email} please verify and use account `;
+        userData.user.sendEmailVerification(); //it is sending email
+        toast.success(verificationMessage);
+        console.log(userData);
+
+        //? UPDATE USER PROFILE
+        await userData.user.updateProfile({
+          displayName: username,
+          photoURL: `https://www.gravatar.com/avatar/${md5(email)}?d=identicon`,
+        });
+
+        //! SAVE USER INFORMATION INTO REALTIME DATABASE
+
+        await firebase.database().ref("users").child(userData.user.uid).set({
+          email: userData.user.email,
+          displayName: userData.user.displayName,
+          photoURL: userData.user.photoURL,
+          uid: userData.user.uid,
+          RegistrationDate: new Date().toString(),
+        });
+      } else {
+        toast.error("Password is not match");
+      }
     } catch (err) {
-      console.log(err);
+      toast.error(err.message);
+    } finally {
+      setStateUser({
+        username: "",
+        email: "",
+        password: "",
+        confirm_password: "",
+        loading: false,
+      });
     }
   };
 

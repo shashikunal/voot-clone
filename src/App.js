@@ -8,12 +8,17 @@ import PasswordReset from "./Components/Auth/PasswordReset";
 import Otp from "./Components/Auth/Otp";
 import PageNotFound from "./Pages/404";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   return (
     <Fragment>
       <Router>
         <Navbar />
+        <ToastContainer />
         {/* Routing starts here */}
+
         <Switch>
           <Route path="/" exact>
             <Home />
