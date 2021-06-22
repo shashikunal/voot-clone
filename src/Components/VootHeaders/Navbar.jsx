@@ -1,7 +1,7 @@
 import React from "react";
 import "./headers.css";
 import VootMenu from "./VootMenu";
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <div>
       <section id="vootHeaders">
@@ -12,7 +12,7 @@ const Navbar = () => {
             </a>
           </div>
           <div className="vootMenu">
-            <VootMenu />
+            <VootMenu users={ props.users}/>
           </div>
         </article>
       </section>

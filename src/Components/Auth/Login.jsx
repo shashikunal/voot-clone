@@ -37,6 +37,8 @@ const Login = ({ history }) => {
     } catch (err) {
       toast.error(err.message);
     }
+
+    setStateUser({ loading: false });
   };
 
   return (

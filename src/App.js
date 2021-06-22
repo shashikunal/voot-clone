@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Navbar from "./Components/VootHeaders/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -10,12 +10,28 @@ import PageNotFound from "./Pages/404";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import firebase from "./firebase";
 
-const App = () => {
+const App = ({ history }) => {
+  let [users, setUsers] = useState("");
+
+  //signed in or not
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setUsers(users); //authenticated users
+        history.push("/");
+      } else {
+        setUsers(""); //anonymous users
+        history.push("/login");
+      }
+    });
+  }, [users, history]);
+
   return (
     <Fragment>
       <Router>
-        <Navbar />
+        <Navbar users={ users}/>
         <ToastContainer />
         {/* Routing starts here */}
 

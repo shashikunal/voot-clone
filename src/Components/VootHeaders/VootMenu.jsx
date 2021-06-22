@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import DropDownMenu from "./DropDownMenu";
 
-const VootMenu = () => {
+const VootMenu = props => {
   let [toggle, setToggle] = useState(false);
   return (
     <Fragment>
@@ -46,7 +46,7 @@ const VootMenu = () => {
             </a>
           </li>
         </ul>
-        <DropDownMenu toggle={toggle} />
+        <DropDownMenu toggle={toggle} users={props.users} />
       </nav>
     </Fragment>
   );
