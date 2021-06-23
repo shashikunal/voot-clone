@@ -88,7 +88,8 @@ input:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-#authBlock button {
+#authBlock button,
+.phoneBtn {
   width: 100%;
   border-radius: 4px;
   background: linear-gradient(263deg, #5909b3, #7f0dff);
@@ -116,4 +117,15 @@ input:-webkit-autofill:focus {
   display: flex;
   justify-content: flex-end;
   margin: 10px 20px;
+}
+
+.phoneBtn {
+  margin: 14px 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  background: #0574f6;
+  text-transform: capitalize;
 }

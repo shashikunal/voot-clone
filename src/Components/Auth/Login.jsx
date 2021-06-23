@@ -47,6 +47,11 @@ const Login = ({ history }) => {
         <div>
           <h1>Welcome to Voot!</h1>
           <p>Please Login for a more personalized experience.</p>
+          <div className="form-group">
+            <Link to="/otp" className="phoneBtn">
+              continue with phone number
+            </Link>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
