@@ -129,3 +129,12 @@ input:-webkit-autofill:focus {
   background: #0574f6;
   text-transform: capitalize;
 }
+
+.authMenu a img {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 9px;
+  border-radius: 100%;
+  padding: 2px;
+}

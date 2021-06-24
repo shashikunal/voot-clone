@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from "react";
 import DropDownMenu from "./DropDownMenu";
-
+import firebase from "../../firebase";
 const VootMenu = props => {
   let [toggle, setToggle] = useState(false);
+  let { displayName, photoURL } = props.users;
   return (
     <Fragment>
       <nav id="vootMenuBlock">
@@ -42,7 +43,11 @@ const VootMenu = props => {
                 setToggle(!toggle);
               }}
             >
-              <i className="far fa-user-circle"></i>
+              {firebase.auth().currentUser ? (
+                <img src={photoURL} alt={displayName} />
+              ) : (
+                <i className="far fa-user-circle"></i>
+              )}
             </a>
           </li>
         </ul>

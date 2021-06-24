@@ -11,27 +11,26 @@ import PageNotFound from "./Pages/404";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import firebase from "./firebase";
+import MyAccount from "./Components/MyAccounts/MyAccount";
 
-const App = ({ history }) => {
-  let [users, setUsers] = useState("");
+const App = () => {
+  let [users, setUsers] = useState("shashi sir dadda");
 
   //signed in or not
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        setUsers(users); //authenticated users
-        history.push("/");
+        setUsers(user); //authenticated users
       } else {
         setUsers(""); //anonymous users
-        history.push("/login");
       }
     });
-  }, [users, history]);
+  }, [users]);
 
   return (
     <Fragment>
       <Router>
-        <Navbar users={ users}/>
+        <Navbar users={users} />
         <ToastContainer />
         {/* Routing starts here */}
 
@@ -50,6 +49,9 @@ const App = ({ history }) => {
           </Route>
           <Route path="/otp" exact>
             <Otp />
+          </Route>
+          <Route path="/account" exact>
+            <MyAccount users={users} />
           </Route>
           {/* page not found always Should be at the last */}
           <Route path="*">

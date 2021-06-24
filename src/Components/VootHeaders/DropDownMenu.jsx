@@ -13,8 +13,8 @@ const DropDownMenu = props => {
     } else {
       toggleRef.current.style.display = "none";
       document.body.onclick = function () {
-          toggleRef.current.style.display = "none";
-      }
+        toggleRef.current.style.display = "none";
+      };
     }
   }, [props.toggle]);
 
@@ -47,9 +47,12 @@ const DropDownMenu = props => {
       <Fragment>
         <li>
           <li>
-            <a hre="#" onClick={logout}>
+            <a href="#" onClick={logout}>
               logout
             </a>
+          </li>
+          <li>
+            <Link to="/account">My Account</Link>
           </li>
         </li>
       </Fragment>
