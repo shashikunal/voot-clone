@@ -38,7 +38,7 @@ const App = () => {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/login" exact>
+          <Route path="/login">
             <Login />
           </Route>
           <Route path="/register" exact>
@@ -50,7 +50,7 @@ const App = () => {
           <Route path="/otp" exact>
             <Otp />
           </Route>
-          <Route path="/account" exact>
+          <Route path="/account">
             <MyAccount users={users} />
           </Route>
           {/* page not found always Should be at the last */}

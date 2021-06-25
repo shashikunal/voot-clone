@@ -62,3 +62,39 @@
   align-items: center;
   justify-content: center;
 }
+
+.profile_block {
+  width: 100% !important;
+  margin: 0px auto;
+  height: auto;
+}
+
+.profile_block article > div {
+  background: #2c2542;
+  padding: 30px;
+  color: #fff;
+  border-radius: 2px;
+  width: 100% !important;
+}
+
+.profile_block article {
+  width: 95% !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  margin: auto;
+}
+
+.profile_block button,
+.phoneBtn {
+  width: auto !important;
+  border-radius: 4px;
+  background: linear-gradient(263deg, #5909b3, #7f0dff);
+  color: #fff;
+  outline: none;
+  border: none;
+  margin: 10px 0;
+  padding: 15px 0;
+  padding: 16px 43px !important;
+  float: right;
+  cursor: pointer;
+}
