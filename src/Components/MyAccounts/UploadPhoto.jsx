@@ -14,7 +14,7 @@ const UploadPhoto = props => {
   let [userRef, setUserRef] = useState(firebase.auth().currentUser);
   let [usersRef, setUsersRef] = useState(firebase.database().ref("users"));
   let { id } = useParams();
-  let { loading, url, upload_avatar, barStatus } = state;
+  let { loading, url, upload_avatar, barStatus, progress } = state;
 
   let handleChange = e => {
     setState({ ...state, upload_avatar: e.target.files[0] }); //if it is file use this trick
@@ -34,6 +34,10 @@ const UploadPhoto = props => {
         "state_changed",
         snapShot => {
           //progressBar purpose
+          let progress = Math.round(
+            (snapShot.bytesTransferred / snapShot.totalBytes) * 100
+          );
+          setState({ progress: progress, barStatus: true });
         },
         err => {
           //handling ERRORS
@@ -47,14 +51,14 @@ const UploadPhoto = props => {
             .child(upload_avatar.name)
             .getDownloadURL();
           setState({ url: downloadURL, barStatus: false }); //update photoURL
-          await setUserRef(userRef.updateProfile({ photoURL: state.url }));
+          setUserRef(await userRef.updateProfile({ photoURL: downloadURL }));
           setUsersRef(
             await usersRef.child(userData.uid).update({
-              photoURL: state.url,
+              photoURL: downloadURL,
             })
           );
-
           toast.success("successfully photo uploaded");
+          window.location.assign("/account"); // page refresh here
         }
       );
     } catch (err) {
@@ -62,12 +66,27 @@ const UploadPhoto = props => {
     }
     setState({ loading: false });
   };
+
+  let ProgressBar = () => {
+    return <progress value={progress} max={100} min={0}></progress>;
+  };
+
   return (
     <section id="authBlock" className="profile_block">
+      <header className="progressBlock">
+        <div className="leftProgress">
+          {barStatus === true ? <ProgressBar /> : ""}
+        </div>
+        <div className="rightProgress">
+          {barStatus === true ? progress + "%" : ""}
+        </div>
+      </header>
+
       <article>
         <div>
           <h1>Welcome to Voot!</h1>
           <p>{id} more personalized experience.</p>
+
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input

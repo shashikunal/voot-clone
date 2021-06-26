@@ -12,6 +12,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import firebase from "./firebase";
 import MyAccount from "./Components/MyAccounts/MyAccount";
+import PrivateRoute from "./Components/Util/PrivateRoute";
+import PublicRoute from "./Components/Util/PublicRoute";
 
 const App = () => {
   let [users, setUsers] = useState("shashi sir dadda");
@@ -38,21 +40,23 @@ const App = () => {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/login">
+          <PublicRoute path="/login">
             <Login />
-          </Route>
-          <Route path="/register" exact>
+          </PublicRoute>
+          <PublicRoute path="/register" exact>
             <Register />
-          </Route>
-          <Route path="/password-reset" exact>
+          </PublicRoute>
+          <PublicRoute path="/password-reset" exact>
             <PasswordReset />
-          </Route>
-          <Route path="/otp" exact>
+          </PublicRoute>
+          <PublicRoute path="/otp" exact>
             <Otp />
-          </Route>
-          <Route path="/account">
+          </PublicRoute>
+
+          <PrivateRoute path="/account" >
             <MyAccount users={users} />
-          </Route>
+          </PrivateRoute>
+
           {/* page not found always Should be at the last */}
           <Route path="*">
             <PageNotFound />

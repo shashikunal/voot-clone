@@ -98,3 +98,31 @@
   float: right;
   cursor: pointer;
 }
+
+progress[value] {
+  /* Reset the default appearance */
+  width: 95%;
+  height: 10px;
+  position: relative;
+  left: 30px;
+  border-radius: 2px;
+  background-color: #7f0dff;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+progress {
+  background-color: #7f0dff;
+}
+.progressBlock {
+  display: flex;
+  height: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+.leftProgress {
+  flex-basis: 98%;
+}
+.rightProgress {
+  flex-basis: 2%;
+}

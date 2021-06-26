@@ -121,7 +121,7 @@ input:-webkit-autofill:focus {
 
 .phoneBtn {
   margin: 14px 0;
-  width: 100%;
+  width: 100% !important;
   display: block;
   text-align: center;
   text-decoration: none;
