@@ -100,7 +100,7 @@ const UploadPhoto = props => {
             </div>
 
             <div className="form-group register_Block">
-              <Link to="/login">go back to login</Link>
+              <Link to="/account">go back to account</Link>
             </div>
             <div className="form-group">
               <button>

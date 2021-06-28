@@ -14,6 +14,7 @@ import firebase from "./firebase";
 import MyAccount from "./Components/MyAccounts/MyAccount";
 import PrivateRoute from "./Components/Util/PrivateRoute";
 import PublicRoute from "./Components/Util/PublicRoute";
+import UpdatePassword from "./Components/MyAccounts/UpdatePassword";
 
 const App = () => {
   let [users, setUsers] = useState("shashi sir dadda");
@@ -53,8 +54,11 @@ const App = () => {
             <Otp />
           </PublicRoute>
 
-          <PrivateRoute path="/account" >
+          <PrivateRoute path="/account">
             <MyAccount users={users} />
+          </PrivateRoute>
+          <PrivateRoute path="/update-password" exact>
+            <UpdatePassword users={users} />
           </PrivateRoute>
 
           {/* page not found always Should be at the last */}
