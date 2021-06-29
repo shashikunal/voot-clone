@@ -130,7 +130,11 @@ progress {
 #MyAccountBlock main li,
 #MyAccountBlock footer li {
   list-style: none;
-  padding: 10px 0;
+  padding: 10px 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+  border-bottom: 1px solid #ff0dd929;
+  margin: 4px 0;
 }
 
 #MyAccountBlock main li a,
@@ -144,4 +148,23 @@ progress {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+}
+
+#MyAccountBlock footer button {
+  width: 100%;
+  border-radius: 4px;
+  background: linear-gradient(263deg, #e74c3c, #ff0d50);
+  color: #fff;
+  outline: none;
+  border: none;
+  margin: 10px 0;
+  padding: 9px 14px;
+  cursor: pointer;
+}
+
+#myAccountBlock main ul {
+  background: #4b207c1a;
+  padding: 10px;
+  margin: 10px 0;
+  border-top: 2px solid #7f0dff5e;
 }

@@ -13,7 +13,7 @@ const MyAccount = props => {
     await user.delete();
     toast.success("successfully account deleted");
   };
-
+  console.log(props);
   return (
     <section id="MyAccountBlock">
       <article>
@@ -31,9 +31,14 @@ const MyAccount = props => {
           </header>
           <main>
             <h4>{email}</h4>
-            <li>
-              <Link to="/update-password">update Password</Link>
-            </li>
+            <ul>
+              <li>
+                <Link to="/update-password">update Password</Link>
+              </li>
+              <li>
+                <Link to="/movies/upload-movies">Upload Movie</Link>
+              </li>
+            </ul>
           </main>
           <footer>
             <li>

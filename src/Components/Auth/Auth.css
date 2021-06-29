@@ -58,7 +58,7 @@
   color: #fff;
 }
 
-label {
+#authBlock article label {
   font-weight: bold;
   font-size: 16px;
   padding: 2px 0 0;
