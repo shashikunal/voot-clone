@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import "./Movies.css";
+import firebase from "../../firebase";
+import { toast } from "react-toastify";
 const CreateMovie = props => {
   let [state, setState] = useState({
     movie_name: "",
@@ -11,17 +13,19 @@ const CreateMovie = props => {
     movie_rating: "",
     barStatus: false,
     loading: "",
+    poster: "",
+    video: "",
   });
 
-  let [poster, setPoster] = useState("");
-  let [video, setVideo] = useState("");
+  // let [poster, setPoster] = useState({});
+  // let [video, setVideo] = useState({});
 
   let handlePoster = e => {
-    setPoster({ poster: e.target.files[0] });
+    setState({ poster: e.target.files[0] });
   };
 
   let handleVideo = e => {
-    setVideo({ video: e.target.files[0] });
+    setState({ video: e.target.files[0] });
   };
   let handleChange = e => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -36,14 +40,24 @@ const CreateMovie = props => {
     movie_language,
     barStatus,
     loading,
+    video,
+    poster,
   } = state;
 
-  let handleSubmit = e => {
+  let handleSubmit = async e => {
     e.preventDefault();
+    console.log();
     try {
-      console.log(state);
-      console.log(poster);
-      console.log(video);
+      let uploadPoster = await firebase
+        .storage()
+        .ref(`/upload-poster/${poster.name}`)
+        .put(poster);
+      let uploadVideo = await firebase
+        .storage()
+        .ref(`/upload-video/${video.name}`)
+        .put(video);
+      console.log(uploadPoster);
+      console.log(uploadVideo);
     } catch (err) {
       console.log(err);
     }

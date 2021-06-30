@@ -3,26 +3,31 @@
   background-color: #251e35;
   height: 100vh;
   align-items: center;
+  border-top: 5px solid #7f0dff38;
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 #MovieBlock article {
   width: 80%;
-  margin: 10px auto;
+  margin: 40px auto;
+  background-color: #251e35;
+  padding: 10px;
 }
 
 #MovieBlock article div h1 {
   margin: 20px 0;
-  text-transform: capitalize;
-  font-size: 30px;
-  color: #5909b3;
-  filter: contrast(0.5);
-  padding: 16px 0 0;
+  text-transform: uppercase;
+  font-size: 26px;
+  color: #ea1537;
+  /* filter: contrast(0.5); */
+  padding: 13px 0 0;
 }
 
 #MovieBlock article div p {
   color: #fff;
   filter: contrast(0.8);
   padding: 10px 0;
+  margin: 20px 0;
 }
 
 #MovieBlock article div form {
@@ -31,11 +36,12 @@
   height: 200px;
   align-items: center;
   width: 100%;
+  justify-content: space-between;
 }
 
 #MovieBlock article div form div {
   flex: 1 1;
-  margin: 10px;
+  margin-right: 10px;
   background: #39295d85;
   padding: 10px;
   box-shadow: 1px 1px 3px 1px #7f0dff4a;
@@ -43,6 +49,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 #MovieBlock article div form div label {
@@ -78,7 +85,7 @@
 .btn-group {
   flex-basis: 100% !important;
   justify-content: flex-end;
-
+  cursor: pointer;
   background-color: transparent !important;
   box-shadow: none !important;
 }
