@@ -9,12 +9,13 @@ import "firebase/database";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDzJwKyDHBbMz84tFcOZXKCTYVEBIixVJ0",
-  authDomain: "voot-efbec.firebaseapp.com",
-  projectId: "voot-efbec",
-  storageBucket: "voot-efbec.appspot.com",
-  messagingSenderId: "723061949503",
-  appId: "1:723061949503:web:965c246a035aac05c4248a",
+  apiKey: "AIzaSyBN_AI363CTYCu_2yudWMshm3qfiPXqBOg",
+  authDomain: "voot-8fef7.firebaseapp.com",
+  databaseURL: "https://voot-8fef7-default-rtdb.firebaseio.com",
+  projectId: "voot-8fef7",
+  storageBucket: "voot-8fef7.appspot.com",
+  messagingSenderId: "1039478055367",
+  appId: "1:1039478055367:web:f81e5410b33f2a3be279e2",
 };
 
 firebase.initializeApp(firebaseConfig);

@@ -13,23 +13,10 @@ const CreateMovie = props => {
     movie_rating: "",
     barStatus: false,
     loading: "",
-    poster: "",
-    video: "",
   });
 
-  // let [poster, setPoster] = useState({});
-  // let [video, setVideo] = useState({});
-
-  let handlePoster = e => {
-    setState({ poster: e.target.files[0] });
-  };
-
-  let handleVideo = e => {
-    setState({ video: e.target.files[0] });
-  };
-  let handleChange = e => {
-    setState({ ...state, [e.target.name]: e.target.value });
-  };
+  let [Poster, setPoster] = useState({});
+  let [Video, setVideo] = useState({});
 
   let {
     movie_name,
@@ -40,28 +27,70 @@ const CreateMovie = props => {
     movie_language,
     barStatus,
     loading,
-    video,
-    poster,
   } = state;
+
+  let handlePoster = e => {
+    setPoster({ Poster: e.target.files[0] });
+  };
+
+  let handleVideo = e => {
+    setVideo({ Video: e.target.files[0] });
+  };
+  let handleChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
   let handleSubmit = async e => {
     e.preventDefault();
-    console.log();
+    console.log(Poster.Poster);
     try {
-      let uploadPoster = await firebase
+      firebase
         .storage()
-        .ref(`/upload-poster/${poster.name}`)
-        .put(poster);
-      let uploadVideo = await firebase
+        .ref(`/upload-poster/${Poster.Poster.name}`)
+        .put(Poster.Poster);
+      let uploadVideo = firebase
         .storage()
-        .ref(`/upload-video/${video.name}`)
-        .put(video);
-      console.log(uploadPoster);
-      console.log(uploadVideo);
+        .ref(`/upload-video/${Video.Video.name}`)
+        .put(Video.Video);
+
+      //==========================update Video ===========================//
+      uploadVideo.on(
+        "state_changed",
+        snapShot => {},
+        err => {},
+        async () => {
+          let downloadPoster = await firebase
+            .storage()
+            .ref("upload-poster")
+            .child(Poster.Poster.name)
+            .getDownloadURL();
+          console.log(downloadPoster);
+          setPoster({ downloadPoster });
+
+          let downloadVideo = await firebase
+            .storage()
+            .ref("upload-video")
+            .child(Video.Video.name)
+            .getDownloadURL();
+          setPoster({ downloadVideo });
+          console.log(downloadVideo);
+
+          await firebase
+            .database()
+            .ref("voot-video")
+            .push({
+              ...state,
+              downloadPoster,
+              downloadVideo,
+            });
+        }
+      );
     } catch (err) {
       console.log(err);
     }
   };
+
+  console.log(state);
   return (
     <section id="MovieBlock">
       <article>
@@ -165,4 +194,4 @@ const CreateMovie = props => {
   );
 };
 
-export default CreateMovie;
+export default withRouter(CreateMovie);
