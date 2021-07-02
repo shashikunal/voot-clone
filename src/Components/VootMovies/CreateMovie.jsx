@@ -13,10 +13,11 @@ const CreateMovie = props => {
     movie_rating: "",
     barStatus: false,
     loading: "",
+    progress: 0,
   });
 
-  let [Poster, setPoster] = useState({});
-  let [Video, setVideo] = useState({});
+  let [Poster, setPoster] = useState();
+  let [Video, setVideo] = useState();
 
   let {
     movie_name,
@@ -27,6 +28,7 @@ const CreateMovie = props => {
     movie_language,
     barStatus,
     loading,
+    progress,
   } = state;
 
   let handlePoster = e => {
@@ -42,7 +44,7 @@ const CreateMovie = props => {
 
   let handleSubmit = async e => {
     e.preventDefault();
-    console.log(Poster.Poster);
+    setState({ loading: true });
     try {
       firebase
         .storage()
@@ -56,7 +58,12 @@ const CreateMovie = props => {
       //==========================update Video ===========================//
       uploadVideo.on(
         "state_changed",
-        snapShot => {},
+        snapShot => {
+          let progress = Math.round(
+            (snapShot.bytesTransferred / snapShot.totalBytes) * 100
+          );
+          setState({ progress, barStatus: true });
+        },
         err => {},
         async () => {
           let downloadPoster = await firebase
@@ -73,7 +80,6 @@ const CreateMovie = props => {
             .child(Video.Video.name)
             .getDownloadURL();
           setPoster({ downloadVideo });
-          console.log(downloadVideo);
 
           await firebase
             .database()
@@ -83,6 +89,8 @@ const CreateMovie = props => {
               downloadPoster,
               downloadVideo,
             });
+          toast.success("successfully movie uploaded");
+          props.history.push("/");
         }
       );
     } catch (err) {
@@ -90,10 +98,21 @@ const CreateMovie = props => {
     }
   };
 
-  console.log(state);
+  let ProgressBar = () => {
+    return <progress value={progress} max={100} min={0}></progress>;
+  };
+
   return (
     <section id="MovieBlock">
       <article>
+        <header className="progressBlock">
+          <div className="leftProgress">
+            {barStatus === true ? <ProgressBar /> : ""}
+          </div>
+          <div className="rightProgress">
+            {barStatus === true ? progress + "%" : ""}
+          </div>
+        </header>
         <div>
           <h1>Welcome to Voot!</h1>
           <p>Upload Movies for a more personalized experience.</p>

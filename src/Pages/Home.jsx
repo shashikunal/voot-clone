@@ -1,9 +1,10 @@
 import React from "react";
+import ListMovies from "../Components/VootMovies/ListMovies";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <ListMovies />
     </div>
   );
 };

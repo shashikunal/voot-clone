@@ -16,6 +16,7 @@ import PrivateRoute from "./Components/Util/PrivateRoute";
 import PublicRoute from "./Components/Util/PublicRoute";
 import UpdatePassword from "./Components/MyAccounts/UpdatePassword";
 import CreateMovie from "./Components/VootMovies/CreateMovie";
+import Movie from "./Components/VootMovies/Movie";
 
 const App = () => {
   let [users, setUsers] = useState("shashi sir dadda");
@@ -54,6 +55,9 @@ const App = () => {
           <PublicRoute path="/otp" exact>
             <Otp />
           </PublicRoute>
+          <PublicRoute path="/shows/:movie_name/:id">
+            <Movie />
+          </PublicRoute>
 
           <PrivateRoute path="/account">
             <MyAccount users={users} />
@@ -64,6 +68,7 @@ const App = () => {
           <PrivateRoute path="/movies/upload-movies">
             <CreateMovie users={users} />
           </PrivateRoute>
+
           {/* page not found always Should be at the last */}
           <Route path="*">
             <PageNotFound />
