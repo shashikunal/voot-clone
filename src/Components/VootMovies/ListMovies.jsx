@@ -41,9 +41,7 @@ const ListMovies = () => {
               to={{
                 pathname: `/shows/${movie.movie_name.slice(0, 20)}/${movie.id}`,
                 state: {
-                  id: movie.id,
-                  movie_name: movie.movie_name,
-                  video: movie.video,
+                  ...movie,
                 },
               }}
             >
@@ -52,7 +50,7 @@ const ListMovies = () => {
           </header>
           <main>
             <p>
-              {movie.language} - {movie.movie_name}
+              {movie.language} - {movie.movie_name.slice(0, 20)}
             </p>
           </main>
         </section>
@@ -63,8 +61,10 @@ const ListMovies = () => {
   return (
     <section>
       <article>
-        <h2>Watch In Your Movies</h2>
         <section id="vootMovies">
+          <header>
+            <h2 style={{ "margin-top": "20px" }}>Watch In Your Movies</h2>
+          </header>
           <article>{movies.length > 0 ? Movies : "loading..."}</article>
         </section>
       </article>

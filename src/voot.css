@@ -12,3 +12,11 @@ body {
   font-family: "Rubik", sans-serif;
   color: #fff;
 }
+
+.carousel-slider {
+  height: 450px !important;
+}
+
+.thumbs-wrapper {
+  display: none;
+}

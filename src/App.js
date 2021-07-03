@@ -17,6 +17,7 @@ import PublicRoute from "./Components/Util/PublicRoute";
 import UpdatePassword from "./Components/MyAccounts/UpdatePassword";
 import CreateMovie from "./Components/VootMovies/CreateMovie";
 import Movie from "./Components/VootMovies/Movie";
+import VideoPlayer from "./Components/VootMovies/VideoPlayer";
 
 const App = () => {
   let [users, setUsers] = useState("shashi sir dadda");
@@ -55,9 +56,26 @@ const App = () => {
           <PublicRoute path="/otp" exact>
             <Otp />
           </PublicRoute>
-          <PublicRoute path="/shows/:movie_name/:id">
-            <Movie />
-          </PublicRoute>
+
+          {!firebase.auth().currentUser ? (
+            <PublicRoute path="/shows/:movie_name/:id" exact>
+              <Movie />
+            </PublicRoute>
+          ) : (
+            <PrivateRoute path="/shows/:movie_name/:id">
+              <Movie />
+            </PrivateRoute>
+          )}
+
+          {!firebase.auth().currentUser ? (
+            <PublicRoute path="/movie/:movie_name/:id" exact>
+              <VideoPlayer />
+            </PublicRoute>
+          ) : (
+            <PrivateRoute path="/movie/:movie_name/:id">
+              <VideoPlayer />
+            </PrivateRoute>
+          )}
 
           <PrivateRoute path="/account">
             <MyAccount users={users} />

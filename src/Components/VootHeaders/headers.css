@@ -11,6 +11,9 @@
   height: 60px;
   align-items: center;
   color: #fff;
+  opacity: 1;
+  z-index: 1000;
+  position: relative;
 }
 
 #vootHeaders article .vootLogo {
